@@ -4,11 +4,10 @@ import httplib2
 import apiclient.discovery
 from oauth2client.service_account import ServiceAccountCredentials
 
+from config import CREDENTIALS_FILE, SPREADSHEET_ID
+
 
 ############################################################### connextion to spreadsheet
-CREDENTIALS_FILE = 'creds.json'
-SPREADSHEET_ID = '1KVYfSZa2ycU86gIggl7NqieuMrIt_YKJA3v605NyuX0'
-
 credentials = ServiceAccountCredentials.from_json_keyfile_name(
         CREDENTIALS_FILE, 
         [
