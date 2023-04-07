@@ -1,7 +1,7 @@
 from pprint import pprint
 
 import httplib2
-import apiclient.discovery
+from apiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
 
 from config import CREDENTIALS_FILE, SPREADSHEET_ID
@@ -16,15 +16,22 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name(
         ])
 
 httpAuth = credentials.authorize(httplib2.Http())
-service = apiclient.discovery.build('sheets', 'v4', http = httpAuth)
+sheet_service = discovery.build('sheets', 'v4', http = httpAuth)
+drive_service = discovery.build('drive', 'v3', http = httpAuth)
 ###############################################################
+
+def get_page_token():
+    page_token = drive_service.changes().getStartPageToken().execute().get("startPageToken")
+    return page_token
 
 
 def get_data():
-    
-    values = service.spreadsheets().values().get(
+    values = sheet_service.spreadsheets().values().get(
         spreadsheetId=SPREADSHEET_ID,
         range='A1:E10',
-        majorDimension='COLUMNS'
     ).execute()
-    pprint(values)
+    return values
+
+
+if __name__ == "__main__":
+    get_data()
