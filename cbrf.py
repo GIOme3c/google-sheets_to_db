@@ -10,7 +10,7 @@ def get_usd_course():
     # pprint(courses)
     for item in courses:
         if item['@ID'] == 'R01235':
-            return float(item['Value'])
+            return float(item['Value'].replace(',','.'))
 
     
 

@@ -30,7 +30,7 @@ def get_data():
         spreadsheetId=SPREADSHEET_ID,
         range='A1:E10',
     ).execute()
-    return values
+    return values['values']
 
 
 if __name__ == "__main__":
