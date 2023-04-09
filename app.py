@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS, cross_origin
 from apscheduler.schedulers.background import BackgroundScheduler
 from sys import argv
 
@@ -9,7 +10,10 @@ import cbrf
 
 is_schedule = '--schedule' in argv
 app = Flask(__name__)
+cors = CORS(app)
 sched = BackgroundScheduler(daemon=True)
+
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 def update_db():
     ss_page_token = spreadsheet.get_page_token()
@@ -24,7 +28,7 @@ def update_db():
 if is_schedule :
     sched.add_job(update_db,'interval',seconds=10)
 
-
+@cross_origin
 @app.route('/',methods=["GET"])
 def get_data():
     if not is_schedule:
