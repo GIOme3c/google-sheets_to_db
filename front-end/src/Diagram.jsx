@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,18 +21,7 @@ ChartJS.register(
 );
 
 
-export function Diagram() {
-
-  const [orders, setOrders] = useState([])
-
-  useEffect(() =>{
-    fetch("http://127.0.0.1:5000/", {
-      method: "GET",
-    })
-    .then(response => response.json())
-    .then(data => {setOrders(data.orders); console.log(data.orders)})
-    .catch(e => console.log(e));
-  },[])
+export function Diagram({orders}) {
 
   const labels = orders.map((order)=>order.delivery_date);
 
@@ -53,15 +41,11 @@ export function Diagram() {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
+        display: false,
       },
     },
   };
 
 
-  return <Line options={options} data={data} />;
+  return <Line options={options} data={data} className="diagram"/>;
 }
