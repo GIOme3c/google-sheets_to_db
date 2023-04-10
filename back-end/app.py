@@ -58,6 +58,5 @@ sched.add_job(check_delivery_dates, 'cron', day_of_week='mon-sun', hour=8, minut
 
 ##########################RUN
 if __name__ == "__main__":
-    check_delivery_dates()
     sched.start()
     app.run(debug=True, host='0.0.0.0')
