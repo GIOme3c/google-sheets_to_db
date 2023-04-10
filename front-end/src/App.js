@@ -11,6 +11,7 @@ function App() {
 
   function transformDate(data) {
     console.log(data)
+    data.sort((a,b)=> a.number - b.number)
     data.map(element => { 
       // Transform date to dd.mm.yyyy format
       const newDate = new Date(element.delivery_date)

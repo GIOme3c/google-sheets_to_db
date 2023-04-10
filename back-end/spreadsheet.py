@@ -28,7 +28,7 @@ def get_page_token():
 def get_data():
     values = sheet_service.spreadsheets().values().get(
         spreadsheetId=SPREADSHEET_ID,
-        range='A1:E10',
+        range='A:E',
     ).execute()
     return values['values']
 
