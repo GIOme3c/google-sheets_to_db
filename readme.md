@@ -30,9 +30,9 @@
 1) Открыть консоль в папке ./back-end и последовательно ввести команды
 2) venv\Scripts\activate (для Windows) 
    venv/bin/activate (для Linux)
-3.1) python app.py 
+3) python app.py 
      для запуска в режиме, когда база обновляется только от запросов с клиента
-3.2) python app.py --schedule
+4) python app.py --schedule
      для запуска в режиме, когда база обновляется каждые 10 секунд, пока работает приложение
 
 ## React
